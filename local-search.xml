@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>leetcode 2141</title>
+    <link href="/2022/05/04/a/"/>
+    <url>/2022/05/04/a/</url>
+    
+    <content type="html"><![CDATA[<hr><h2 id="problem"><a href="#problem" class="headerlink" title="problem"></a>problem</h2><p>有n台电脑，和一个battery数组，第i个电池可以让一台电脑运行batteries[i]分钟。需要让这n台电脑同时运行。</p><p>请返回让n台电脑同时运行的最长分钟数。</p><hr><h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><ol><li><p>首先，假设可以同时运行x分钟，电池分为两类：</p><ul><li>大于等于x分钟的   </li><li>小于x分钟的</li></ul><p>所以每个电池最多使用 <code>min(batteries[i],x)</code>分钟，累加起来为 <code>sum</code>,必要条件为 <code>n*x &lt;= sum</code>。</p></li><li><p>对于电量大于等于x的电池，可以一直为一台电脑供电，就不用管了。</p></li><li><p>剩余的电池，电量和为 <code>sum&#39;</code>，可以任意选择剩下的电池来供给，多余电量来供给下一台，依次类推。 因此剩下的电脑 <code>n&#39;*x &lt;= sum&#39;</code>，充分性得证。</p></li><li><p>可以让n台电脑同时运行x分钟，也可以使其低于x分钟，满足单调性，可以二分答案</p></li></ol><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>&#123;<br><span class="hljs-keyword">public</span>：<br>    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">maxRunTime</span><span class="hljs-params">(<span class="hljs-type">int</span> n, vector&lt;<span class="hljs-type">int</span> &gt;&amp;b)</span></span>&#123;<br>        <span class="hljs-type">long</span> tot = <span class="hljs-built_in">accumulate</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0L</span>);<br>        <span class="hljs-type">long</span> l = <span class="hljs-number">0</span>, r = tot / n;<br>        <span class="hljs-keyword">while</span>(l &lt; r)&#123;<br>            <span class="hljs-type">long</span> x = (l + r + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>, sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">long</span> bi : b )&#123;<br>                sum += <span class="hljs-built_in">min</span>(bi,x);<br>            &#125;<br>            <span class="hljs-keyword">if</span>(n * x &lt;= sum)&#123;<br>                l = x;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                r = x - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> l;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>post title</title>
     <link href="/2022/04/15/post-title/"/>
     <url>/2022/04/15/post-title/</url>
