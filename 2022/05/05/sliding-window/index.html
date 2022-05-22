@@ -16,13 +16,15 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="209.长度最小的子树组 滑动窗口，每遇到符合条件的就更新目标值 123456789101112131415161718192021class Solution &amp;#123;public:    int minSubArrayLen(int target, vector&lt;int&gt;&amp; nums) &amp;#123;        int fast &#x3D; 0, slow &#x3D; 0;">
+<meta property="og:type" content="article">
 <meta property="og:title" content="sliding window">
 <meta property="og:url" content="http://example.com/2022/05/05/sliding-window/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="209.长度最小的子树组 滑动窗口，每遇到符合条件的就更新目标值 123456789101112131415161718192021class Solution &amp;#123;public:    int minSubArrayLen(int target, vector&lt;int&gt;&amp; nums) &amp;#123;        int fast &#x3D; 0, slow &#x3D; 0;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-05T09:14:20.000Z">
-<meta property="article:modified_time" content="2022-05-05T09:14:20.993Z">
+<meta property="article:modified_time" content="2022-05-22T07:10:06.366Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -194,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      937 字
     </span>
   
 
@@ -203,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      8 分钟
     </span>
   
 
@@ -235,7 +237,18 @@
             <h1 style="display: none">sliding window</h1>
             
             <div class="markdown-body">
-              
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209.长度最小的子树组</a></p>
+<p>滑动窗口，每遇到符合条件的就更新目标值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minSubArrayLen</span><span class="hljs-params">(<span class="hljs-type">int</span> target, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> fast = <span class="hljs-number">0</span>, slow = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> len = <span class="hljs-number">1000000</span>;<br>        <span class="hljs-keyword">while</span>(fast &lt; n)&#123;<br>            sum += nums[fast++];<br>            <span class="hljs-keyword">while</span>(sum &gt;= target)&#123;<br>                len = <span class="hljs-built_in">min</span>(len, fast - slow);<br>                sum -= nums[slow++];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(len &lt;= <span class="hljs-number">100000</span>)&#123;<br>            <span class="hljs-keyword">return</span> len;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fruit-into-baskets/">904.水果成篮</a></p>
+<p>由于要采两种水果，所以滑动窗口时，使用哈希表来统计，一旦种类多了，就收缩窗口，保持在两种水果的时候来更新即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp">     <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">totalFruit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; tree)</span> </span>&#123;<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; basket;<br>        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>, len = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; tree.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-comment">//入篮子的是果子的种类tree[i]</span><br>            basket[tree[i]]++;<br>            len++;<br>            <span class="hljs-keyword">while</span> (basket.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">2</span>) &#123;<br>                basket[tree[left]]--;<br>                <span class="hljs-comment">//erase 是消除一对散列对</span><br>                <span class="hljs-keyword">if</span> (basket[tree[left]] == <span class="hljs-number">0</span>) basket.<span class="hljs-built_in">erase</span>(tree[left]);<br>                left++;<br>                len--;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (result &lt; len) &#123;<br>                result = len;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
             </div>
             <hr>
             <div>
